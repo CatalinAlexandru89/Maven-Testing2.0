@@ -10,7 +10,6 @@ public class PageNavigation {
         navigatePaymentInformation
     }
 
-
     public void navigateThroughPages(Pages page) {
         switch (page) {
             case navigatePersonalInformation:

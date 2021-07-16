@@ -52,6 +52,24 @@ public class TestPlan {
         Utils.waitForElementToLoad(2);
     }
 
+    //Test 2.5
+
+    @Test(testName = "Click start enrollment and Personal Information Page negative flow")
+    public static void clickStartEnrollmentTwo() {
+        driver.get(Utils.BASE_URL);
+        PersonalInformation secondTestTwo = new PersonalInformation(driver);
+        secondTestTwo.clickStartEnrollment();
+        Utils.waitForElementToLoad(2);
+
+        driver.get(Utils.SECOND_URL);
+        secondTestTwo.fillFirstName();
+        secondTestTwo.fillPassword();
+        secondTestTwo.fillConfirmPassword();
+        Utils.waitForElementToLoad(2);
+        secondTestTwo.clickNext();
+        Utils.waitForElementToLoad(3);
+    }
+
     //Test 3
 
     @Test(testName = "Contact information page")
@@ -172,7 +190,7 @@ public class TestPlan {
 
     //Test 9
 
-    @Test(testName = "Check facebook Jane Doe")
+    @Test(testName = "Check social media Jane Doe")
     public static void testFacebookJaneDoe() {
         driver.get(Utils.BASE_URL);
         MainPage ninthTest = new MainPage(driver);
@@ -208,7 +226,7 @@ public class TestPlan {
 
     //Test 10
 
-    @Test(testName = "Check unhappy flow newsletter")
+    @Test(testName = "Check negative flow newsletter")
     public static void testUnhappyNewsletter() {
         driver.get(Utils.BASE_URL);
         MainPage tenthTest = new MainPage(driver);
