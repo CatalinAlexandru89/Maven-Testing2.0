@@ -18,9 +18,7 @@ public class CourseOptions extends PageObject {
 
     public void navigateToCourseOptions() {
         clickAutomationAndManual();
-        Utils.waitForElementToLoad(2);
         clickNextForth();
-        Utils.waitForElementToLoad(3);
     }
 
     public CourseOptions(WebDriver driver) {

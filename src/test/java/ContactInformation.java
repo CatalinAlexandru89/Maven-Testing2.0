@@ -62,19 +62,12 @@ public class ContactInformation extends PageObject{
 
     public void navigateToContactInformation() {
         fillEmail();
-        fillPhoneNumber();
-        Utils.waitForElementToLoad(2);
-        deletePhoneNumber();
-        Utils.waitForElementToLoad(2);
         fillPhoneNumberThree();
-        Utils.waitForElementToLoad(2);
         fillCountry();
         fillCity();
         fillPostCode();
-        Utils.waitForElementToLoad(2);
         clickNextThree();
         checkTextCourseOptions();
-        Utils.waitForElementToLoad(1);
     }
 
     public ContactInformation(WebDriver driver) {

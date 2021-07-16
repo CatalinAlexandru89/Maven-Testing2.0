@@ -59,17 +59,11 @@ public class PaymentInformation extends PageObject {
         fillCardHolderName();
         fillCardNumber();
         fillCVC();
-        Utils.waitForElementToLoad(2);
         clickMonthDropdown();
-        Utils.waitForElementToLoad(1);
         clickPickMonth();
         clickYearDropdown();
-        Utils.waitForElementToLoad(1);
         clickPickYear();
-        Utils.waitForElementToLoad(2);
         clickNextFifth();
-        checkTextSuccess();
-        Utils.waitForElementToLoad(2);
     }
 
     public PaymentInformation(WebDriver driver) {

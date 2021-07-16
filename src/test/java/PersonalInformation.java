@@ -58,11 +58,8 @@ public class PersonalInformation extends PageObject {
         fillUserName();
         fillPassword();
         fillConfirmPassword();
-        Utils.waitForElementToLoad(2);
         clickNext();
-        Utils.waitForElementToLoad(1);
-        checkTextContactInformation();
-        Utils.waitForElementToLoad(1);
+        Utils.waitForElementToLoad(5);
     }
 
     public PersonalInformation(WebDriver driver) {

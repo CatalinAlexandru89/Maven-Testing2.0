@@ -5,6 +5,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
+import java.security.PrivateKey;
+
 public class TestPlan {
     private static final WebDriver driver = new ChromeDriver();
 
@@ -38,8 +40,16 @@ public class TestPlan {
         Utils.waitForElementToLoad(2);
 
         driver.get(Utils.SECOND_URL);
-        PersonalInformation second = new PersonalInformation(driver);
-        second.navigateToPersonalInformation();
+        secondTest.fillFirstName();
+        secondTest.fillLastName();
+        secondTest.fillUserName();
+        secondTest.fillPassword();
+        secondTest.fillConfirmPassword();
+        Utils.waitForElementToLoad(3);
+        secondTest.clickNext();
+        Utils.waitForElementToLoad(1);
+        Assert.assertEquals(secondTest.checkTextContactInformation(), "Contact information");
+        Utils.waitForElementToLoad(2);
     }
 
     //Test 3
@@ -47,44 +57,66 @@ public class TestPlan {
     @Test(testName = "Contact information page")
     public static void goToContactInformation() {
         driver.get(Utils.SECOND_URL);
-        PersonalInformation second = new PersonalInformation(driver);
-        second.navigateToPersonalInformation();
+        PageNavigation thirdTest = new PageNavigation(driver);
+        thirdTest.navigateThroughPages(PageNavigation.Pages.navigatePersonalInformation);
 
         ContactInformation third = new ContactInformation(driver);
-        third.navigateToContactInformation();
+        Utils.waitForElementToLoad(1);
+        third.fillEmail();
+        third.fillPhoneNumber();
+        Utils.waitForElementToLoad(2);
+        third.deletePhoneNumber();
+        Utils.waitForElementToLoad(1);
+        third.fillPhoneNumberThree();
+        third.fillCountry();
+        third.fillCity();
+        third.fillPostCode();
+        Utils.waitForElementToLoad(1);
+        third.clickNextThree();
+        Assert.assertEquals(third.checkTextCourseOptions(), "Course options");
+        Utils.waitForElementToLoad(2);
     }
 
     //Test 4
 
-    @Test(testName = "Check course option")
+    @Test(testName = "Check course options")
     public static void testCourseOptions() {
         driver.get(Utils.SECOND_URL);
-        PersonalInformation second = new PersonalInformation(driver);
-        second.navigateToPersonalInformation();
-
-        ContactInformation third = new ContactInformation(driver);
-        third.navigateToContactInformation();
+        PageNavigation fourthTest = new PageNavigation(driver);
+        fourthTest.navigateThroughPages(PageNavigation.Pages.navigateContactInformation);
 
         CourseOptions fourth = new CourseOptions(driver);
-        fourth.navigateToCourseOptions();
+        fourth.clickAutomationAndManual();
+        Utils.waitForElementToLoad(3);
+        fourth.clickNextForth();
     }
 
     //Test 5
 
     @Test(testName = "Check payment information")
-    public static void testCourseOptionAndPaymentInformation() {
+    public static void testPaymentInformation() {
         driver.get(Utils.SECOND_URL);
-        PersonalInformation second = new PersonalInformation(driver);
-        second.navigateToPersonalInformation();
-
-        ContactInformation third = new ContactInformation(driver);
-        third.navigateToContactInformation();
-
-        CourseOptions fourth = new CourseOptions(driver);
-        fourth.navigateToCourseOptions();
+        PageNavigation fifthTest = new PageNavigation(driver);
+        fifthTest.navigateThroughPages(PageNavigation.Pages.navigateCourseOptions);
 
         PaymentInformation fifth = new PaymentInformation(driver);
-        fifth.navigateToPaymentInformation();
+        Utils.waitForElementToLoad(2);
+        fifth.fillCardHolderName();
+        fifth.fillCardNumber();
+        fifth.fillCVC();
+        Utils.waitForElementToLoad(2);
+        fifth.clickMonthDropdown();
+        Utils.waitForElementToLoad(3);
+        fifth.clickPickMonth();
+        Utils.waitForElementToLoad(2);
+        fifth.clickYearDropdown();
+        Utils.waitForElementToLoad(3);
+        fifth.clickPickYear();
+        Utils.waitForElementToLoad(2);
+        fifth.clickNextFifth();
+        Utils.waitForElementToLoad(1);
+        Assert.assertEquals(fifth.checkTextSuccess(), "Success!");
+        Utils.waitForElementToLoad(3);
     }
 
     //Test 6
@@ -179,9 +211,9 @@ public class TestPlan {
     @Test(testName = "Check unhappy flow newsletter")
     public static void testUnhappyNewsletter() {
         driver.get(Utils.BASE_URL);
-        MainPage testOpt = new MainPage(driver);
-        testOpt.fillNewsletter();
-        testOpt.clickSubmitNewsletter();
+        MainPage tenthTest = new MainPage(driver);
+        tenthTest.fillNewsletter();
+        tenthTest.clickSubmitNewsletter();
         Utils.waitForElementToLoad(5);
     }
 
@@ -190,12 +222,12 @@ public class TestPlan {
     @Test(testName = "Check happy flow newsletter")
     public static void testHappyNewsletter() {
         driver.get(Utils.BASE_URL);
-        MainPage testNoua = new MainPage(driver);
-        testNoua.fillNewsletterTwo();
+        MainPage eleventhTest = new MainPage(driver);
+        eleventhTest.fillNewsletterTwo();
         Utils.waitForElementToLoad(2);
-        testNoua.clickSubmitNewsletterTwo();
+        eleventhTest.clickSubmitNewsletterTwo();
         Utils.waitForElementToLoad(3);
-        testNoua.closePopUpTwo();
+        eleventhTest.closePopUpTwo();
         Utils.waitForElementToLoad(2);
     }
 
@@ -204,12 +236,12 @@ public class TestPlan {
     @Test(testName = "Navigate back to top")
     public static void testBackToTopButton() {
         driver.get(Utils.BASE_URL);
-        MainPage testUnsprezece = new MainPage(driver);
-        testUnsprezece.waitFooterScroll();
+        MainPage twelfthTest = new MainPage(driver);
+        twelfthTest.waitFooterScroll();
         Utils.waitForElementToLoad(2);
-        testUnsprezece.clickArrowTop();
+        twelfthTest.clickArrowTop();
         Utils.waitForElementToLoad(2);
-        Assert.assertEquals(testUnsprezece.verifyTextHeaderDoi(), "Certified Software Tester");
+        Assert.assertEquals(twelfthTest.verifyTextHeaderDoi(), "Certified Software Tester");
         Utils.waitForElementToLoad(1);
     }
 
